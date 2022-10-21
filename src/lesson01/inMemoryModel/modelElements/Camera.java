@@ -1,4 +1,4 @@
-package modelElements;
+package lesson01.inMemoryModel.modelElements;
 
 public class Camera {
     public Point3D location;

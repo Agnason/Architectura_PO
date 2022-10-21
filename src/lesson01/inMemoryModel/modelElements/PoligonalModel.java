@@ -1,4 +1,4 @@
-package modelElements;
+package lesson01.inMemoryModel.modelElements;
 
 public class PoligonalModel {
 //    в этом классе только 2 поля

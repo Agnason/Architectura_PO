@@ -1,4 +1,4 @@
-package inMemoryModel;
+package lesson01.inMemoryModel;
 
 // это интерфейс
 public interface IModelChangeObserver {

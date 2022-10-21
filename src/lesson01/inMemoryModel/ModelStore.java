@@ -1,4 +1,4 @@
-package inMemoryModel;
+package lesson01.inMemoryModel;
 
 // создаём класс ModelStore
 public class ModelStore {
