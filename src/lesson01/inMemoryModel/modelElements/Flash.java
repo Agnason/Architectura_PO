@@ -1,5 +1,7 @@
 package lesson01.inMemoryModel.modelElements;
 
+import java.awt.*;
+
 public class Flash {
     public Point3D location;
     public Angle3D angle;
@@ -10,7 +12,7 @@ public class Flash {
 
     }
 
-    public void move(Point3D) {
+    public void move(Point3D point3D) {
 
     }
 }
