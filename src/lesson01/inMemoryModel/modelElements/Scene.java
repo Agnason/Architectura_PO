@@ -1,5 +1,7 @@
 package lesson01.inMemoryModel.modelElements;
 
+import java.lang.reflect.Type;
+
 public class Scene {
 //    это поля
     public int id;
