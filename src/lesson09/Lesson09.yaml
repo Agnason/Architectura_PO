@@ -1,0 +1,230 @@
+swagger: "2.0"
+openapi: 3.0.0
+info:
+  title: Заказ на ресурсы облака
+  version: 0.0.1
+servers:
+  - url: http://localhost:8080/api/v1/
+    description: Dev server
+paths:
+  /clouds:
+    get:
+      summary: Метод получения списка заказов на облако
+      tags:
+        - Clouds
+      operationId: getAllClouds
+      responses:
+        '200':
+          description: Успешный ответ со списком заказов в облаке
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Clouds'
+        default:
+          description: Все остальное
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Метод создания заказа на облако
+      tags:
+        - Cloud
+      operationId: createCloud
+      requestBody:
+        required: true
+        content:
+          adplication/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+      responses:
+        '200':
+          description: Успешный ответ создания заказ на облако
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Cloud'
+        default:
+          description: Все остальное
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /clients:
+    get:
+      summary: Метод получения списка клиентов
+      tags:
+        - Clients
+      operationId: getAllClients
+      responses:
+        '200':
+          description: Успешный ответ со списком клиентов
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Clients'
+        default:
+          description: Все остальное
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Метод создания клиента
+      tags:
+        - Client
+      operationId: createClient
+      requestBody:
+        required: true
+        content:
+          adplication/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+      responses:
+        '200':
+          description: Успешный ответ создания клиента
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        default:
+          description: Все остальное
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Метод удаления клиента
+      tags:
+        - Client
+      operationId: deleteClient
+      requestBody:
+        required: true
+        content:
+          adplication/json:
+            schema:
+              $ref: '#/components/schemas/Error'
+      responses:
+        '200':
+          description: Успешный ответ удаления клиента
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        default:
+          description: Все остальное
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /clouds/{cloud_id}:
+    get:
+      summary: Метод получения заказа на облако по ID
+      tags:
+        - Clouds
+      operationId: getCloudById
+      parameters:
+        - name: cloud_id
+          in: path
+          required: true
+          description: Идентификатор заказа облака
+          schema:
+            type: string
+          example: f102b615
+      responses:
+        '200':
+          description: Успешный ответ заказом облака по ID
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Cloud'
+        default:
+          description: Все остальное
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      summary: Метод отмены заказа на облако по ID
+      tags:
+        - Clouds
+      operationId: cancelCloudById
+      parameters:
+        - name: cloud_id
+          in: path
+          required: true
+          description: Идентификатор заказа облака
+          schema:
+            type: string
+          example: f102b615
+      responses:
+        '200':
+          description: Успешный ответ заказом облака по ID
+          content:
+            adplication/json: {}
+        default:
+          description: Все остальное
+          content:
+            adplication/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Client:
+      type: object
+      required:
+        - id
+        - FIO
+        - Country
+        - e-mail
+      properties:
+        id:
+          type: integer
+          example: 1
+        FIO:
+          type: string
+          example: Nasonov
+        Country:
+          type: string
+          example: Russia
+        e-mail:
+          type: string
+          example: asd@yandex.ru
+    Cloud:
+      type: object
+      required:
+        - id_client
+        - OS
+        - RAM
+      properties:
+        cloud_id:
+          type: string
+          example: f102b615
+        id_client:
+          type: string
+          example: f102b615
+        OS:
+          type: string
+          enum:
+            - Windows
+            - Linux
+          description: Операционная система сервера
+        RAM:
+          type: string
+          example: 128
+    Clouds:
+      type: array
+      items:
+        $ref: '#/components/schemas/Cloud'
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+  
