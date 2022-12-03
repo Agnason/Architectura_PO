@@ -1,0 +1,370 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Робот-пылесос",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080/api/v1/",
+      "description": "Dev server"
+    }
+  ],
+  "paths": {
+    "/robots": {
+      "get": {
+        "summary": "Метод получения списка роботов",
+        "tags": [
+          "Robots"
+        ],
+        "operationId": "getAllRobots",
+        "responses": {
+          "200": {
+            "description": "Успешный ответ со списком роботов",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Robots"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все остальное",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Метод создания робота",
+        "tags": [
+          "Robot"
+        ],
+        "operationId": "createRobot",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "adplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Успешный ответ создания робота",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Robot"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все остальное",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Метод удаления робота",
+        "tags": [
+          "Robot"
+        ],
+        "operationId": "deleteRobot",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "adplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Успешный ответ удаления робота",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Robot"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все остальное",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users": {
+      "get": {
+        "summary": "Метод получения списка пользовталей",
+        "tags": [
+          "Users"
+        ],
+        "operationId": "getAllClients",
+        "responses": {
+          "200": {
+            "description": "Успешный ответ со списком пользовтаелей",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Users"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все остальное",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Метод создания пользователя",
+        "tags": [
+          "User"
+        ],
+        "operationId": "createUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "adplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Успешный ответ создания пользователя",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все остальное",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Метод удаления пользователя",
+        "tags": [
+          "User"
+        ],
+        "operationId": "deleteUser",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "adplication/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Error"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Успешный ответ удаления пользователя",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/User"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все остальное",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/robots/{id_group}": {
+      "get": {
+        "summary": "Метод получения списка роботов по группе пользователей",
+        "tags": [
+          "Robots"
+        ],
+        "operationId": "getRobotsByGroup",
+        "parameters": [
+          {
+            "name": "id_group",
+            "in": "path",
+            "required": true,
+            "description": "Идентификатор группы",
+            "schema": {
+              "type": "integer"
+            },
+            "example": 1
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Успешный ответ получения списка роботов по группе пользователей",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Robots"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Все остальное",
+            "content": {
+              "adplication/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Robot": {
+        "type": "object",
+        "required": [
+          "id",
+          "model",
+          "version",
+          "status",
+          "resource",
+          "fabric_number",
+          "ip_address",
+          "id_group"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "model": {
+            "type": "string",
+            "example": "AAA"
+          },
+          "version": {
+            "type": "string",
+            "example": "AFG145"
+          },
+          "status": {
+            "type": "varchar",
+            "example": "worked"
+          },
+          "resource": {
+            "type": "integer",
+            "example": 75
+          },
+          "fabric_number": {
+            "type": "integer",
+            "example": 12356
+          },
+          "ip_address": {
+            "type": "string",
+            "example": "192.168.2.5"
+          },
+          "id_group": {
+            "type": "integer",
+            "example": 1
+          }
+        }
+      },
+      "User": {
+        "type": "object",
+        "required": [
+          "id",
+          "hash",
+          "question"
+        ],
+        "properties": {
+          "id": {
+            "type": "integer",
+            "example": 1
+          },
+          "hash": {
+            "type": "integer",
+            "example": 123456
+          },
+          "question": {
+            "type": "string",
+            "example": "Who is Bob?"
+          }
+        }
+      },
+      "Users": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/Cloud"
+        }
+      },
+      "Error": {
+        "type": "object",
+        "required": [
+          "code",
+          "message"
+        ],
+        "properties": {
+          "code": {
+            "type": "integer"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}
